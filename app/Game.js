@@ -32,8 +32,11 @@ class Game {
         this.categoryWrapper.innerHTML = category;
         this.quote = new Quote(text);
     }
-    guess(letter) {
-        this.sentence.quess(letter);
+    guess(letter, event) {
+        event.target.disabled = true;
+        this.quote.guess(letter);
+        this.drawQuote();
+
     }
 
     drawLetters() {
@@ -41,16 +44,19 @@ class Game {
             const label = (i+10).toString(36);
             const button = document.createElement('button');
             button.innerHTML = label;
-            button.addEventListener('click', () => this.guess(label))
+            button.addEventListener('click', (event) => this.guess(label, event))
             this.lettersWrapper.appendChild(button);
             console.log(label);
         }
     }
+    drawQuote(){
+        const content = this.quote.getContent();
+        this.wordWrapper.innerHTML = content;
+    }
 
     start() {
         this.drawLetters();
-        const content = this.quote.getContent();
-        this.wordWrapper.innerHTML = content;
+        this.drawQuote();
     }
 }
 const game = new Game({
