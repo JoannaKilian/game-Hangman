@@ -4,14 +4,17 @@
     }
 
     getContent(){
-        let content = "";
-        for (const char of this.text ) {
+        let content = '';
+        for (const char of this.text) {
             if (char !== " ") {
                 content += '_';
             } else {
-                content += " "
+                content += " ";
             }
         }
         return content;
+    }
+    guess(letter) {
+        
     }
 }

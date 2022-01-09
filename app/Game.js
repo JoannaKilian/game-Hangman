@@ -2,19 +2,20 @@ import { Quote } from './Quote.js';
 
 class Game {
     quotes = [{
-        text: 'pan tadeusz',
-        category: 'Utwór literacki'
+        text: 'java script',
+        category: 'a programming language'
     },
     {
-        text: 'janko muzykant',
-        category: 'Utwór literacki'
+        text: 'hypertext markup language',
+        category: 'html'
     },
     {
-        text: 'akademia pana kleksa',
-        category: 'film'
-    }, {
-        text: 'ogniem i mieczem',
-        category: 'film'
+        text: 'canvas',
+        category: 'html tag'
+    },
+    {
+        text: 'doctype',
+        category: 'html'
     }]
     constructor({
         lettersWrapper, 
@@ -29,10 +30,10 @@ class Game {
 
         const {text, category} = this.quotes[Math.floor(Math.random()*this.quotes.length)];
         this.categoryWrapper.innerHTML = category;
-        // this.quote = new Quote(text);
+        this.quote = new Quote(text);
     }
     guess(letter) {
-        console.log(letter)
+        this.sentence.quess(letter);
     }
 
     drawLetters() {
@@ -48,6 +49,8 @@ class Game {
 
     start() {
         this.drawLetters();
+        const content = this.quote.getContent();
+        this.wordWrapper.innerHTML = content;
     }
 }
 const game = new Game({
