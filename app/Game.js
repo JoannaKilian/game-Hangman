@@ -1,6 +1,10 @@
 import { Quote } from './Quote.js';
 
 class Game {
+    currentStep = 0;
+    lastsStep = 5;
+    value = 0;
+
     quotes = [{
         text: 'java script',
         category: 'a programming language'
@@ -34,9 +38,17 @@ class Game {
     }
     guess(letter, event) {
         event.target.disabled = true;
-        this.quote.guess(letter);
-        this.drawQuote();
-
+        if (this.quote.guess(letter)){
+            this.drawQuote();
+        } else {
+            this.currentStep++;
+            this.value += 34;
+            console.log(this.value);
+            document.getElementsByClassName('imgstep')[0].style.transform = `rotate(${this.value}deg)`;
+            if(this.currentStep == this.lastsStep) {
+                this.loosing();
+            }
+        }
     }
 
     drawLetters() {
@@ -46,17 +58,30 @@ class Game {
             button.innerHTML = label;
             button.addEventListener('click', (event) => this.guess(label, event))
             this.lettersWrapper.appendChild(button);
-            console.log(label);
         }
     }
     drawQuote(){
         const content = this.quote.getContent();
         this.wordWrapper.innerHTML = content;
+        if(!content.includes('_')) {
+            this.winning();
+        }
     }
 
     start() {
+        document.getElementsByClassName('imgstep')[0].style.transform = `rotate(${this.value}deg)`;
         this.drawLetters();
         this.drawQuote();
+    }
+
+    winning() {
+        this.wordWrapper.innerHTML = 'CONGRATULATIONS! YOU WON';
+        this.lettersWrapper.innerHTML = '';
+    }
+
+    loosing() {
+        this.wordWrapper.innerHTML = 'UNFORTUNATELY YOU HAVE LOST';
+        this.lettersWrapper.innerHTML = '';
     }
 }
 const game = new Game({
