@@ -1,4 +1,4 @@
-import { Quote } from './Quote.js'
+import { Quote } from './Quote.js';
 
 class Game {
     quotes = [{
@@ -29,7 +29,7 @@ class Game {
 
         const {text, category} = this.quotes[Math.floor(Math.random()*this.quotes.length)];
         this.categoryWrapper.innerHTML = category;
-        this.quote = new Quote(text);
+        // this.quote = new Quote(text);
     }
     guess(letter) {
         console.log(letter)
