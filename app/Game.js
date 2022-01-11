@@ -3,7 +3,7 @@ import { Quote } from './Quote.js';
 class Game {
     currentStep = 0;
     lastsStep = 5;
-    value = 20;
+    value = 0;
 
     quotes = [{
         text: 'java script',
