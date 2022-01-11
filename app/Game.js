@@ -3,7 +3,7 @@ import { Quote } from './Quote.js';
 class Game {
     currentStep = 0;
     lastsStep = 5;
-    value = 0;
+    value = 20;
 
     quotes = [{
         text: 'java script',
@@ -42,6 +42,7 @@ class Game {
             this.drawQuote();
         } else {
             this.currentStep++;
+            console.log(this.currentStep);
             this.value += 34;
             console.log(this.value);
             document.getElementsByClassName('imgstep')[0].style.transform = `rotate(${this.value}deg)`;
